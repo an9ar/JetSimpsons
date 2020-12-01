@@ -52,7 +52,7 @@ fun EpisodeCard(
             modifier = Modifier.clickable(onClick = { navController.navigate("episode/${episode.id}") }).fillMaxWidth()
     ) {
         ConstraintLayout {
-            val (simpsonNameRef, simpsonPhotoRef) = createRefs()
+            val (simpsonNameRef, simpsonPhotoRef, imdbRating) = createRefs()
             GlideImage(
                     data = episode.image_url,
                     fadeIn = true,
@@ -77,6 +77,15 @@ fun EpisodeCard(
                         top.linkTo(simpsonPhotoRef.bottom)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
+                    }
+            )
+            Text(
+                    text = "IMDB ${episode.imdb_rating}",
+                    style = DSTheme.typography.textSmallBold,
+                    color = DSTheme.colors.light,
+                    modifier = Modifier.constrainAs(imdbRating) {
+                        bottom.linkTo(simpsonPhotoRef.bottom, 4.dp)
+                        end.linkTo(simpsonPhotoRef.end, 4.dp)
                     }
             )
         }

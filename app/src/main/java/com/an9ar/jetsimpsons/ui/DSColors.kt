@@ -10,13 +10,15 @@ object DSColors {
     val background = Color(0xFFE7E7E7)
     val backgroundReverse = Color(0xFF141414)
     val card = Color(0xFFFFFFFF)
-    val cardReverse = Color(0xFF1E1E1E)
+    val cardReverse = Color(0xFF252525)
     val textAccent = Color(0xFFFeFB1F)
     val text = Color(0xFF192038)
     val textReverse = Color(0xFFEEEEEE)
     val success = Color(0xFF00E096)
     val warning = Color(0xFFFFAA00)
     val error = Color(0xFFFF3D71)
+    val light = Color(0xFFEEEEEE)
+    val dark = Color(0xFF1E1E1E)
 }
 
 interface DSColorPalette {
@@ -28,6 +30,8 @@ interface DSColorPalette {
     val success: Color
     val warning: Color
     val error: Color
+    val light: Color
+    val dark: Color
 
     val materialColors: Colors
 }
@@ -41,6 +45,8 @@ fun dsLightColorPalette(): DSColorPalette = object : DSColorPalette {
     override val success: Color = DSColors.success
     override val warning: Color = DSColors.warning
     override val error: Color = DSColors.error
+    override val light: Color = DSColors.light
+    override val dark: Color = DSColors.dark
 
     override val materialColors: Colors = lightColors(
             primary = DSColors.primary,
@@ -58,6 +64,8 @@ fun dsDarkColorPalette(): DSColorPalette = object : DSColorPalette {
     override val success: Color = DSColors.success
     override val warning: Color = DSColors.warning
     override val error: Color = DSColors.error
+    override val light: Color = DSColors.light
+    override val dark: Color = DSColors.dark
 
     override val materialColors: Colors = darkColors(
             primary = DSColors.primary,
