@@ -91,7 +91,7 @@ fun OutlinedText(value: String, textColor: Color, textSize: Int, modifier: Modif
     ConstraintLayout(modifier = modifier) {
         val (text, outline) = createRefs()
         Text(
-                color = colorResource(id = R.color.black),
+                color = DSTheme.colors.dark,
                 text = value,
                 style = TextStyle(
                         fontFamily = fontFamily(font(R.font.simpsons_font)),

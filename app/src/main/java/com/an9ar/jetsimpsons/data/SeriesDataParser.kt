@@ -8,7 +8,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
-
 private val episodesList = ArrayList<Episode>()
 
 suspend fun getEpisodesList(assets: AssetManager): List<Episode>{
