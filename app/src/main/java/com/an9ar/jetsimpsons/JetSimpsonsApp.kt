@@ -9,6 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
+import com.an9ar.jetsimpsons.screens.EpisodeCardScreen
+import com.an9ar.jetsimpsons.screens.EpisodesListScreen
+import com.an9ar.jetsimpsons.screens.SplashScreen
 import com.an9ar.jetsimpsons.ui.DSTheme
 
 @Composable

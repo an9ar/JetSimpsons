@@ -1,4 +1,4 @@
-package com.an9ar.jetsimpsons
+package com.an9ar.jetsimpsons.screens
 
 import android.content.res.AssetManager
 import androidx.compose.foundation.background
@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
+import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.data.getEpisodesList
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.ui.DSTheme

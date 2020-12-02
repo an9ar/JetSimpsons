@@ -1,7 +1,6 @@
 package com.an9ar.jetsimpsons.data
 
 import android.content.res.AssetManager
-import com.an9ar.jetsimpsons.Episode
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException

@@ -1,6 +1,6 @@
 package com.an9ar.jetsimpsons.repositories
 
-import com.an9ar.jetsimpsons.Episode
+import com.an9ar.jetsimpsons.data.Episode
 
 interface SimpsonsRepository {
     fun getEpisodesList(): List<Episode>

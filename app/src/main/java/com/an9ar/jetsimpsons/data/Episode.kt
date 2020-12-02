@@ -1,4 +1,4 @@
-package com.an9ar.jetsimpsons
+package com.an9ar.jetsimpsons.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

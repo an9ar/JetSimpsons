@@ -1,4 +1,4 @@
-package com.an9ar.jetsimpsons
+package com.an9ar.jetsimpsons.screens
 
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.material.Text
@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.ui.DSTheme
 import dev.chrisbanes.accompanist.glide.GlideImage
