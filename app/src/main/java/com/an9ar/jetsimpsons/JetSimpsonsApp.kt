@@ -22,20 +22,20 @@ fun JetSimpsonsApp(context: Context, repository: SimpsonsRepository) {
             NavHost(navController = navController, startDestination = "splash") {
                 composable("splash") {
                     SplashScreen(
-                            navController = navController,
+                            navHostController = navController,
                             assets = context.assets,
                             repository = repository
                     )
                 }
                 composable("seriesList") {
-                    EpisodesListScreen(navController = navController, repository = repository)
+                    EpisodesListScreen(navHostController = navController, repository = repository)
                 }
                 composable(
                         "episode/{episodeId}",
                         arguments = listOf(navArgument("episodeId") { type = NavType.LongType })
                 ) { backStackEntry ->
                     backStackEntry.arguments?.getLong("episodeId")?.let { id ->
-                        EpisodeCardScreen(navController = navController, repository = repository, id)
+                        EpisodeCardScreen(navHostController = navController, repository = repository, id)
                     }
                 }
             }

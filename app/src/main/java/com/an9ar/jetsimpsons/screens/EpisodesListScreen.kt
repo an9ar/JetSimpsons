@@ -22,36 +22,36 @@ import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
 fun EpisodesListScreen(
-        navController: NavHostController,
+        navHostController: NavHostController,
         repository: SimpsonsRepository
 ) {
     val episodes = repository.getEpisodesList()
-    EpisodesGridList(items = episodes, navController = navController)
+    EpisodesGridList(items = episodes, navHostController = navHostController)
 }
 
 @Composable
 fun EpisodesGridList(
         items: List<Episode>,
-        navController: NavHostController
+        navHostController: NavHostController
 ) {
     LazyGridFor(
             items = items,
             rows = 2,
             hPadding = 8
     ) { episode, index ->
-        EpisodeCard(navController = navController, episode = episode)
+        EpisodeCard(navHostController = navHostController, episode = episode)
     }
 }
 
 @Composable
 fun EpisodeCard(
-        navController: NavHostController,
+        navHostController: NavHostController,
         episode: Episode
 ) {
     Card(
             backgroundColor = DSTheme.colors.card,
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.clickable(onClick = { navController.navigate("episode/${episode.id}") }).fillMaxWidth()
+            modifier = Modifier.clickable(onClick = { navHostController.navigate("episode/${episode.id}") }).fillMaxWidth()
     ) {
         ConstraintLayout {
             val (simpsonNameRef, simpsonPhotoRef, imdbRating) = createRefs()

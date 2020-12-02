@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.font
@@ -28,7 +27,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-        navController: NavHostController,
+        navHostController: NavHostController,
         assets: AssetManager,
         repository: SimpsonsRepository
 ) {
@@ -37,9 +36,7 @@ fun SplashScreen(
         val listOfEpisodes = getEpisodesList(assets = assets)
         repository.setEpisodesList(listOfEpisodes)
         delay(1500)
-        navController.navigate("seriesList") {
-            launchSingleTop = true
-        }
+        navHostController.navigate("seriesList")
     }
 }
 
@@ -129,7 +126,7 @@ fun OutlinedCircularProgress(progressColor: Color, modifier: Modifier) {
                 modifier = Modifier.constrainAs(progress) {}
         )
         CircularProgressIndicator(
-                color = colorResource(id = R.color.black),
+                color = DSTheme.colors.dark,
                 strokeWidth = 1.dp,
                 modifier = Modifier.constrainAs(outline) {
                     top.linkTo(progress.top)

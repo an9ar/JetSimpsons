@@ -22,7 +22,7 @@ import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
 fun EpisodeCardScreen(
-        navController: NavHostController,
+        navHostController: NavHostController,
         repository: SimpsonsRepository,
         episodeId: Long
 ) {
@@ -37,7 +37,7 @@ fun EpisodeCardScreen(
                             )
                         },
                         navigationIcon = {
-                            IconButton(onClick = { navController.navigateUp() }) {
+                            IconButton(onClick = { navHostController.navigateUp() }) {
                                 Icon(Icons.Filled.ArrowBack)
                             }
                         },
