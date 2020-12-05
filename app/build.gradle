@@ -42,7 +42,7 @@ android {
 }
 
 def compose_navigation = "1.0.0-alpha03"
-def accompanist_version = "0.3.3.1"
+def accompanist_version = "0.4.0"
 def dagger_version = '2.29.1'
 
 dependencies {
