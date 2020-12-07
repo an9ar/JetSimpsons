@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
-import com.an9ar.jetsimpsons.ui.theme.DSTheme
+import com.an9ar.jetsimpsons.theme.DSTheme
 import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable

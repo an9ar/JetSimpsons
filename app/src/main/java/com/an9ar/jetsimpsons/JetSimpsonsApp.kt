@@ -12,7 +12,7 @@ import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.screens.EpisodeCardScreen
 import com.an9ar.jetsimpsons.screens.EpisodesListScreen
 import com.an9ar.jetsimpsons.screens.SplashScreen
-import com.an9ar.jetsimpsons.ui.theme.DSTheme
+import com.an9ar.jetsimpsons.theme.DSTheme
 
 @Composable
 fun JetSimpsonsApp(context: Context, repository: SimpsonsRepository) {
