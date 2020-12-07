@@ -1,4 +1,4 @@
-package com.an9ar.jetsimpsons.ui
+package com.an9ar.jetsimpsons.ui.theme
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

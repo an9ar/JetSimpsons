@@ -21,7 +21,7 @@ import androidx.navigation.compose.navigate
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.data.getEpisodesList
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
-import com.an9ar.jetsimpsons.ui.DSTheme
+import com.an9ar.jetsimpsons.ui.theme.DSTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 
