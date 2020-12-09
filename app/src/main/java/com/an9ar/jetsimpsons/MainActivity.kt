@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.setContent
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     @Inject
@@ -13,16 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject()
         setContent {
             JetSimpsonsApp(
                     context = applicationContext,
                     repository = simpsonsRepository
             )
         }
-    }
-
-    fun inject() {
-        App.appComponent.inject(this)
     }
 }
