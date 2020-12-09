@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -16,17 +17,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import com.an9ar.jetsimpsons.ui.LazyGridFor
 import com.an9ar.jetsimpsons.data.Episode
-import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.theme.DSTheme
+import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
 fun EpisodesListScreen(
         navHostController: NavHostController,
-        repository: SimpsonsRepository
+        episodesViewModel: EpisodesViewModel
 ) {
-    val episodes = repository.getEpisodesList()
-    EpisodesGridList(items = episodes, navHostController = navHostController)
+    val episodes = episodesViewModel.episodesList.observeAsState()
+    episodes.value?.let { EpisodesGridList(items = it, navHostController = navHostController) }
 }
 
 @Composable

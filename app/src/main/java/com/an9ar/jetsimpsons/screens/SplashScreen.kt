@@ -20,8 +20,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.data.getEpisodesList
-import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.theme.DSTheme
+import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 
@@ -29,12 +29,12 @@ import kotlinx.coroutines.delay
 fun SplashScreen(
         navHostController: NavHostController,
         assets: AssetManager,
-        repository: SimpsonsRepository
+        episodesViewModel: EpisodesViewModel
 ) {
     SplashContent()
     LaunchedEffect(subject = Dispatchers.IO) {
         val listOfEpisodes = getEpisodesList(assets = assets)
-        repository.setEpisodesList(listOfEpisodes)
+        episodesViewModel.setEpisodesList(listOfEpisodes)
         delay(1500)
         navHostController.navigate("seriesList")
     }

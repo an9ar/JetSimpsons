@@ -16,14 +16,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.an9ar.jetsimpsons.data.Episode
-import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.theme.DSTheme
+import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
 fun EpisodeCardScreen(
         navHostController: NavHostController,
-        repository: SimpsonsRepository,
+        episodesViewModel: EpisodesViewModel,
         episodeId: Long
 ) {
     Scaffold(
@@ -46,7 +46,7 @@ fun EpisodeCardScreen(
             },
             bodyContent = { innerPadding ->
                 val modifier = Modifier.padding(innerPadding)
-                val targetEpisode = repository.getEpisodeById(episodeId)
+                val targetEpisode = episodesViewModel.getEpisodeById(episodeId)
                 targetEpisode?.let { EpisodeCardContent(it, modifier) }
             }
     )
@@ -122,22 +122,22 @@ fun EpisodeNameTitle(episodeTitle: String) {
 
 @Composable
 fun EpisodeDescriptionItem(
-    descriptionParameter: String,
-    descriptionValue: String
+        descriptionParameter: String,
+        descriptionValue: String
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Text(
-            text = descriptionParameter,
-            style = DSTheme.typography.textMediumBold,
-            color = DSTheme.colors.text
+                text = descriptionParameter,
+                style = DSTheme.typography.textMediumBold,
+                color = DSTheme.colors.text
         )
         Text(
-            text = descriptionValue,
-            style = DSTheme.typography.textMedium,
-            color = DSTheme.colors.text,
-            modifier = Modifier.padding(start = 16.dp)
+                text = descriptionValue,
+                style = DSTheme.typography.textMedium,
+                color = DSTheme.colors.text,
+                modifier = Modifier.padding(start = 16.dp)
         )
     }
 }
