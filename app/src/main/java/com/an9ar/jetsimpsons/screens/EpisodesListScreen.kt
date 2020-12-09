@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
-import com.an9ar.jetsimpsons.LazyGridFor
+import com.an9ar.jetsimpsons.ui.LazyGridFor
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
 import com.an9ar.jetsimpsons.theme.DSTheme

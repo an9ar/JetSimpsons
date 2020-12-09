@@ -1,4 +1,4 @@
-package com.an9ar.jetsimpsons
+package com.an9ar.jetsimpsons.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnForIndexed
