@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetSimpsonsApp(
-                    context = applicationContext,
+                    assets = applicationContext.assets,
                     episodesViewModel = episodesViewModel
             )
         }

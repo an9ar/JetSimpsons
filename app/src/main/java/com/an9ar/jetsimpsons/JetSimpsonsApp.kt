@@ -1,6 +1,6 @@
 package com.an9ar.jetsimpsons
 
-import android.content.Context
+import android.content.res.AssetManager
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -15,7 +15,7 @@ import com.an9ar.jetsimpsons.theme.DSTheme
 import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 
 @Composable
-fun JetSimpsonsApp(context: Context, episodesViewModel: EpisodesViewModel) {
+fun JetSimpsonsApp(assets: AssetManager, episodesViewModel: EpisodesViewModel) {
     DSTheme {
         Surface(color = DSTheme.colors.background) {
             val navController = rememberNavController()
@@ -23,7 +23,7 @@ fun JetSimpsonsApp(context: Context, episodesViewModel: EpisodesViewModel) {
                 composable("splash") {
                     SplashScreen(
                             navHostController = navController,
-                            assets = context.assets,
+                            assets = assets,
                             episodesViewModel = episodesViewModel
                     )
                 }
