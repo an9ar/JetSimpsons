@@ -53,19 +53,19 @@ data class DSTypography internal constructor(
         val textLargeLight: TextStyle = TextStyle(
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Light,
-                lineHeight = 20.sp,
+                lineHeight = 30.sp,
                 fontFamily = fontFamily(font(R.font.simpsons_font))
         ),
         val textLarge: TextStyle = TextStyle(
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Normal,
-                lineHeight = 20.sp,
+                lineHeight = 30.sp,
                 fontFamily = fontFamily(font(R.font.simpsons_font))
         ),
         val textLargeBold: TextStyle = TextStyle(
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
-                lineHeight = 20.sp,
+                lineHeight = 30.sp,
                 fontFamily = fontFamily(font(R.font.simpsons_font))
         ),
         val materialTypography: Typography = Typography(
