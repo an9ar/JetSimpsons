@@ -1,11 +1,9 @@
 package com.an9ar.jetsimpsons.screens
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -27,7 +25,34 @@ fun EpisodesListScreen(
         episodesViewModel: EpisodesViewModel
 ) {
     val episodes = episodesViewModel.episodesList.observeAsState()
-    episodes.value?.let { EpisodesGridList(items = it, navHostController = navHostController) }
+    episodes.value?.let { EpisodesListContent(items = it, navHostController = navHostController) }
+}
+
+@Composable
+fun EpisodesListContent(
+        items: List<Episode>,
+        navHostController: NavHostController
+) {
+    Scaffold(
+            topBar = {
+                TopAppBar(
+                        title = {
+                            Text(
+                                    text = "Simpsons episodes",
+                                    style = DSTheme.typography.textMediumBold,
+                                    color = DSTheme.colors.text,
+                                    textAlign = TextAlign.Center
+                            )
+                        },
+                        backgroundColor = DSTheme.colors.background,
+                        modifier = Modifier.fillMaxWidth()
+                )
+            }
+    ) {
+        Surface(color = DSTheme.colors.background) {
+            EpisodesGridList(items = items, navHostController = navHostController)
+        }
+    }
 }
 
 @Composable
