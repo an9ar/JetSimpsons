@@ -5,17 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.repositories.SimpsonsRepository
+import com.an9ar.jetsimpsons.ui.ListItemType
 
 class EpisodesViewModel @ViewModelInject constructor(
         private val simpsonsRepository: SimpsonsRepository
-): ViewModel() {
+) : ViewModel() {
 
     val episodesList: MutableLiveData<List<Episode>> = MutableLiveData()
+    val episodesListType: MutableLiveData<ListItemType> = MutableLiveData(ListItemType.GRID)
 
     fun getEpisodeById(id: Long): Episode? = episodesList.value?.find { episode -> episode.id == id }
 
     suspend fun setEpisodesList(episodes: List<Episode>) {
         episodesList.value = episodes
+    }
+
+    fun setEpisodesListType(type: ListItemType) {
+        episodesListType.value = type
     }
 
 }

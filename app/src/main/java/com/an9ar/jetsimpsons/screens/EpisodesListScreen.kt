@@ -29,15 +29,16 @@ fun EpisodesListScreen(
         episodesViewModel: EpisodesViewModel
 ) {
     val episodes = episodesViewModel.episodesList.observeAsState()
-    episodes.value?.let { EpisodesListContent(items = it, navHostController = navHostController) }
+    episodes.value?.let { EpisodesListContent(items = it, navHostController = navHostController, episodesViewModel = episodesViewModel) }
 }
 
 @Composable
 fun EpisodesListContent(
         items: List<Episode>,
-        navHostController: NavHostController
+        navHostController: NavHostController,
+        episodesViewModel: EpisodesViewModel
 ) {
-    var listItemType by remember { mutableStateOf(ListItemType.GRID) }
+    var listItemType = episodesViewModel.episodesListType.observeAsState()
     Scaffold(
             topBar = {
                 TopAppBar(backgroundColor = DSTheme.colors.background) {
@@ -57,9 +58,9 @@ fun EpisodesListContent(
                                 imageVector = vectorResource(id = R.drawable.ic_list_grid),
                                 modifier = Modifier
                                         .clickable(onClick = {
-                                            listItemType = when (listItemType) {
-                                                ListItemType.GRID -> ListItemType.LINEAR
-                                                ListItemType.LINEAR -> ListItemType.GRID
+                                            when (listItemType.value) {
+                                                ListItemType.GRID -> episodesViewModel.setEpisodesListType(ListItemType.LINEAR)
+                                                ListItemType.LINEAR -> episodesViewModel.setEpisodesListType(ListItemType.GRID)
                                             }
                                         })
                                         .constrainAs(itemSortingType) {
@@ -73,7 +74,7 @@ fun EpisodesListContent(
             }
     ) {
         Surface(color = DSTheme.colors.background) {
-            when (listItemType) {
+            when (listItemType.value) {
                 ListItemType.GRID -> EpisodesGridList(items = items, navHostController = navHostController)
                 ListItemType.LINEAR -> EpisodesLinearList(items = items, navHostController = navHostController)
             }
