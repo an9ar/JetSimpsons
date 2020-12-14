@@ -40,12 +40,10 @@ fun EpisodesListContent(
                             Text(
                                     text = "Simpsons episodes",
                                     style = DSTheme.typography.textMediumBold,
-                                    color = DSTheme.colors.text,
-                                    textAlign = TextAlign.Center
+                                    color = DSTheme.colors.text
                             )
                         },
-                        backgroundColor = DSTheme.colors.background,
-                        modifier = Modifier.fillMaxWidth()
+                        backgroundColor = DSTheme.colors.background
                 )
             }
     ) {

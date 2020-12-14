@@ -50,6 +50,7 @@ fun EpisodeCardScreen(
                 targetEpisode?.let { EpisodeCardContent(it, modifier) }
             }
     )
+
 }
 
 @Composable
@@ -88,23 +89,24 @@ fun EpisodeImage(url: String) {
 @Composable
 fun EpisodeInfo(episode: Episode) {
     Card(
-            shape = RoundedCornerShape(topLeft = 32.dp, topRight = 32.dp),
+            shape = RoundedCornerShape(size = 32.dp),
             backgroundColor = DSTheme.colors.card,
-            modifier = Modifier.fillMaxHeight()
+            modifier = Modifier.fillMaxSize()
     ) {
-        Column {
+        Column(modifier = Modifier.fillMaxSize()) {
             EpisodeNameTitle(episodeTitle = episode.title)
             Divider(color = DSTheme.colors.background)
             Spacer(modifier = Modifier.preferredHeight(8.dp))
             EpisodeDescriptionItem("IMDb rating", episode.imdb_rating.toString())
             EpisodeDescriptionItem("IMDb votes:", episode.imdb_votes.toString())
-            EpisodeDescriptionItem("№ in season:", episode.number_in_season.toString())
-            EpisodeDescriptionItem("№ in series:", episode.number_in_series.toString())
+            EpisodeDescriptionItem("Number in season:", episode.number_in_season.toString())
+            EpisodeDescriptionItem("Number in series:", episode.number_in_series.toString())
             EpisodeDescriptionItem("Air date:", episode.original_air_date)
             EpisodeDescriptionItem("Air year:", episode.original_air_year.toString())
             EpisodeDescriptionItem("Production code:", episode.production_code)
             EpisodeDescriptionItem("Season:", episode.season.toString())
             EpisodeDescriptionItem("Views:", episode.views.toString())
+            Spacer(modifier = Modifier.preferredHeight(8.dp))
         }
     }
 }
