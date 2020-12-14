@@ -2,6 +2,7 @@ package com.an9ar.jetsimpsons.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -9,13 +10,16 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
+import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.ui.LazyGridFor
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.theme.DSTheme
+import com.an9ar.jetsimpsons.ui.ListItemType
 import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import dev.chrisbanes.accompanist.glide.GlideImage
 
@@ -33,22 +37,46 @@ fun EpisodesListContent(
         items: List<Episode>,
         navHostController: NavHostController
 ) {
+    var listItemType by remember { mutableStateOf(ListItemType.GRID) }
     Scaffold(
             topBar = {
-                TopAppBar(
-                        title = {
-                            Text(
-                                    text = "Simpsons episodes",
-                                    style = DSTheme.typography.textMediumBold,
-                                    color = DSTheme.colors.text
-                            )
-                        },
-                        backgroundColor = DSTheme.colors.background
-                )
+                TopAppBar(backgroundColor = DSTheme.colors.background) {
+                    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+                        val (screenTitle, itemSortingType) = createRefs()
+                        Text(
+                                text = "Simpsons episodes",
+                                style = DSTheme.typography.textMediumBold,
+                                color = DSTheme.colors.text,
+                                modifier = Modifier.constrainAs(screenTitle) {
+                                    top.linkTo(parent.top)
+                                    bottom.linkTo(parent.bottom)
+                                    start.linkTo(parent.start, 12.dp)
+                                }
+                        )
+                        Icon(
+                                imageVector = vectorResource(id = R.drawable.ic_list_grid),
+                                modifier = Modifier
+                                        .clickable(onClick = {
+                                            listItemType = when (listItemType) {
+                                                ListItemType.GRID -> ListItemType.LINEAR
+                                                ListItemType.LINEAR -> ListItemType.GRID
+                                            }
+                                        })
+                                        .constrainAs(itemSortingType) {
+                                            top.linkTo(parent.top)
+                                            bottom.linkTo(parent.bottom)
+                                            end.linkTo(parent.end, 24.dp)
+                                        }
+                        )
+                    }
+                }
             }
     ) {
         Surface(color = DSTheme.colors.background) {
-            EpisodesGridList(items = items, navHostController = navHostController)
+            when (listItemType) {
+                ListItemType.GRID -> EpisodesGridList(items = items, navHostController = navHostController)
+                ListItemType.LINEAR -> EpisodesLinearList(items = items, navHostController = navHostController)
+            }
         }
     }
 }
@@ -113,6 +141,51 @@ fun EpisodeCard(
                         bottom.linkTo(simpsonPhotoRef.bottom, 4.dp)
                         end.linkTo(simpsonPhotoRef.end, 4.dp)
                     }
+            )
+        }
+    }
+}
+
+@Composable
+fun EpisodesLinearList(
+        items: List<Episode>,
+        navHostController: NavHostController
+) {
+    LazyColumnFor(
+            items = items
+    ) { episode ->
+        EpisodeListItem(navHostController = navHostController, episode = episode)
+    }
+}
+
+@Composable
+fun EpisodeListItem(
+        navHostController: NavHostController,
+        episode: Episode
+) {
+    Card(
+            backgroundColor = DSTheme.colors.card,
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.padding(4.dp).clickable(onClick = { navHostController.navigate("episode/${episode.id}") }).fillMaxWidth()
+    ) {
+        Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
+            GlideImage(
+                    data = episode.image_url,
+                    fadeIn = true,
+                    contentScale = ContentScale.FillBounds,
+                    loading = {
+                        Box(Modifier.fillMaxSize()) {
+                            CircularProgressIndicator(Modifier.align(Alignment.Center))
+                        }
+                    },
+                    modifier = Modifier.height(90.dp).width(120.dp)
+            )
+            Text(
+                    text = episode.title,
+                    style = DSTheme.typography.textSmallBold,
+                    color = DSTheme.colors.text,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxSize()
             )
         }
     }

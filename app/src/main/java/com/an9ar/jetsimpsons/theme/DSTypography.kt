@@ -45,7 +45,7 @@ data class DSTypography internal constructor(
                 fontFamily = fontFamily(font(R.font.simpsons_font))
         ),
         val textMediumBold: TextStyle = TextStyle(
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 20.sp,
                 fontFamily = fontFamily(font(R.font.simpsons_font))
