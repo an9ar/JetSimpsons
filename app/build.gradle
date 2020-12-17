@@ -38,13 +38,12 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.20'
+        kotlinCompilerVersion '1.4.21'
     }
 }
 
 def compose_navigation = "1.0.0-alpha03"
 def accompanist_version = "0.4.0"
-def dagger_version = '2.29.1'
 def hilt_version = '2.28-alpha'
 def hilt_jetpack_version = '1.0.0-alpha02'
 
