@@ -1,5 +1,5 @@
 package com.an9ar.jetsimpsons.ui
 
-enum class ListItemType {
+enum class ListType {
     GRID, LINEAR
 }

@@ -19,7 +19,8 @@ import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.ui.LazyGridFor
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.theme.DSTheme
-import com.an9ar.jetsimpsons.ui.ListItemType
+import com.an9ar.jetsimpsons.ui.AnimatedListTypeButton
+import com.an9ar.jetsimpsons.ui.ListType
 import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import dev.chrisbanes.accompanist.glide.GlideImage
 
@@ -38,7 +39,7 @@ fun EpisodesListContent(
         navHostController: NavHostController,
         episodesViewModel: EpisodesViewModel
 ) {
-    var listItemType = episodesViewModel.episodesListType.observeAsState()
+    val listItemType = episodesViewModel.episodesListType.observeAsState(ListType.GRID)
     Scaffold(
             topBar = {
                 TopAppBar(backgroundColor = DSTheme.colors.background) {
@@ -54,20 +55,16 @@ fun EpisodesListContent(
                                     start.linkTo(parent.start, 12.dp)
                                 }
                         )
-                        Icon(
-                                imageVector = vectorResource(id = R.drawable.ic_list_grid),
-                                modifier = Modifier
-                                        .clickable(onClick = {
-                                            when (listItemType.value) {
-                                                ListItemType.GRID -> episodesViewModel.setEpisodesListType(ListItemType.LINEAR)
-                                                ListItemType.LINEAR -> episodesViewModel.setEpisodesListType(ListItemType.GRID)
-                                            }
-                                        })
-                                        .constrainAs(itemSortingType) {
-                                            top.linkTo(parent.top)
-                                            bottom.linkTo(parent.bottom)
-                                            end.linkTo(parent.end, 24.dp)
-                                        }
+                        AnimatedListTypeButton(
+                                listTypeState = listItemType.value,
+                                onListTypeChanged = { listItemType ->
+                                    episodesViewModel.setEpisodesListType(listItemType)
+                                },
+                                modifier = Modifier.constrainAs(itemSortingType) {
+                                    top.linkTo(parent.top)
+                                    bottom.linkTo(parent.bottom)
+                                    end.linkTo(parent.end, 24.dp)
+                                }
                         )
                     }
                 }
@@ -75,8 +72,8 @@ fun EpisodesListContent(
     ) {
         Surface(color = DSTheme.colors.background) {
             when (listItemType.value) {
-                ListItemType.GRID -> EpisodesGridList(items = items, navHostController = navHostController)
-                ListItemType.LINEAR -> EpisodesLinearList(items = items, navHostController = navHostController)
+                ListType.GRID -> EpisodesGridList(items = items, navHostController = navHostController)
+                ListType.LINEAR -> EpisodesLinearList(items = items, navHostController = navHostController)
             }
         }
     }
