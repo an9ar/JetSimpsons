@@ -1,5 +1,6 @@
 package com.an9ar.jetsimpsons.screens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
@@ -10,7 +11,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -39,7 +39,7 @@ fun EpisodesListContent(
         navHostController: NavHostController,
         episodesViewModel: EpisodesViewModel
 ) {
-    val listItemType = episodesViewModel.episodesListType.observeAsState(ListType.GRID)
+    val listItemType = episodesViewModel.episodesListType.observeAsState(ListType.NONE)
     Scaffold(
             topBar = {
                 TopAppBar(backgroundColor = DSTheme.colors.background) {
@@ -74,6 +74,7 @@ fun EpisodesListContent(
             when (listItemType.value) {
                 ListType.GRID -> EpisodesGridList(items = items, navHostController = navHostController)
                 ListType.LINEAR -> EpisodesLinearList(items = items, navHostController = navHostController)
+                ListType.NONE -> EpisodesGridList(items = items, navHostController = navHostController)
             }
         }
     }
@@ -101,7 +102,11 @@ fun EpisodeCard(
     Card(
             backgroundColor = DSTheme.colors.card,
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.clickable(onClick = { navHostController.navigate("episode/${episode.id}") }).fillMaxWidth()
+            modifier = Modifier
+                    .clickable(onClick = {
+                        navHostController.navigate("episode/${episode.id}")
+                    })
+                    .fillMaxWidth()
     ) {
         ConstraintLayout {
             val (simpsonNameRef, simpsonPhotoRef, imdbRating) = createRefs()
@@ -164,7 +169,12 @@ fun EpisodeListItem(
     Card(
             backgroundColor = DSTheme.colors.card,
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.padding(4.dp).clickable(onClick = { navHostController.navigate("episode/${episode.id}") }).fillMaxWidth()
+            modifier = Modifier
+                    .padding(4.dp)
+                    .clickable(onClick = {
+                        navHostController.navigate("episode/${episode.id}")
+                    })
+                    .fillMaxWidth()
     ) {
         Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
             GlideImage(

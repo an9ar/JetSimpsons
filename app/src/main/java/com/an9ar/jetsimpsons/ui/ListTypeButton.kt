@@ -19,7 +19,18 @@ fun ListTypeButton(
 ) {
 
     when (listTypeState) {
-        ListType.GRID -> {
+        ListType.LINEAR -> {
+            Icon(
+                    imageVector = vectorResource(id = R.drawable.ic_list_linear),
+                    modifier = modifier
+                            .alpha(transitionState[iconOpacity])
+                            .rotate(transitionState[iconRotation])
+                            .clickable(onClick = {
+                                onListTypeChanged(ListType.GRID)
+                            })
+            )
+        }
+        else -> {
             Icon(
                 imageVector = vectorResource(id = R.drawable.ic_list_grid),
                 modifier = modifier
@@ -27,17 +38,6 @@ fun ListTypeButton(
                     .rotate(transitionState[iconRotation])
                     .clickable(onClick = {
                         onListTypeChanged(ListType.LINEAR)
-                    })
-            )
-        }
-        else -> {
-            Icon(
-                imageVector = vectorResource(id = R.drawable.ic_list_linear),
-                modifier = modifier
-                    .alpha(transitionState[iconOpacity])
-                    .rotate(transitionState[iconRotation])
-                    .clickable(onClick = {
-                        onListTypeChanged(ListType.GRID)
                     })
             )
         }

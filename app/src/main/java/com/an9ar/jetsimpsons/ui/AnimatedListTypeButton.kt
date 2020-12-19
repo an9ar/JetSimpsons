@@ -23,6 +23,13 @@ fun AnimatedListTypeButton(
 ) {
     val transitionDefinition = transitionDefinition<ListType> {
 
+        state(ListType.NONE) {
+            this[gridListIconSize] = 18.dp
+            this[linearListIconSize] = 4.dp
+            this[iconOpacity] = 1f
+            this[iconRotation] = 0f
+        }
+
         state(ListType.GRID) {
             this[gridListIconSize] = 18.dp
             this[linearListIconSize] = 4.dp
@@ -69,8 +76,8 @@ fun AnimatedListTypeButton(
     }
 
     val nextState = when (listTypeState) {
-        ListType.GRID -> ListType.LINEAR
-        else -> ListType.GRID
+        ListType.LINEAR -> ListType.GRID
+        else -> ListType.LINEAR
     }
 
     val transitionState2 = transition(
