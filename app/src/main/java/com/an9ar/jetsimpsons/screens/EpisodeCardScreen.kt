@@ -41,7 +41,7 @@ fun EpisodeCardScreen(
                                 Icon(Icons.Filled.ArrowBack)
                             }
                         },
-                        backgroundColor = DSTheme.colors.background
+                        backgroundColor = DSTheme.colors.toolbar
                 )
             },
             bodyContent = { innerPadding ->

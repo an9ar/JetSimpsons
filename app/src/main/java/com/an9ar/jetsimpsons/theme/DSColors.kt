@@ -14,6 +14,10 @@ object DSColors {
     val textAccent = Color(0xFFFeFB1F)
     val text = Color(0xFF192038)
     val textReverse = Color(0xFFEEEEEE)
+    val toolbar = Color(0xFFDDDDDD)
+    val toolbarReverse = Color(0xFF101010)
+    val splash = Color(0xFFDDDDDD)
+    val splashReverse = Color(0xFF101010)
     val success = Color(0xFF00E096)
     val warning = Color(0xFFFFAA00)
     val error = Color(0xFFFF3D71)
@@ -27,6 +31,8 @@ interface DSColorPalette {
     val textAccent: Color
     val text: Color
     val card: Color
+    val toolbar: Color
+    val splash: Color
     val success: Color
     val warning: Color
     val error: Color
@@ -42,6 +48,8 @@ fun dsLightColorPalette(): DSColorPalette = object : DSColorPalette {
     override val textAccent: Color = DSColors.textAccent
     override val text: Color = DSColors.text
     override val card: Color = DSColors.card
+    override val toolbar: Color = DSColors.toolbar
+    override val splash: Color = DSColors.splash
     override val success: Color = DSColors.success
     override val warning: Color = DSColors.warning
     override val error: Color = DSColors.error
@@ -61,6 +69,8 @@ fun dsDarkColorPalette(): DSColorPalette = object : DSColorPalette {
     override val textAccent: Color = DSColors.textAccent
     override val text: Color = DSColors.textReverse
     override val card: Color = DSColors.cardReverse
+    override val toolbar: Color = DSColors.toolbarReverse
+    override val splash: Color = DSColors.splashReverse
     override val success: Color = DSColors.success
     override val warning: Color = DSColors.warning
     override val error: Color = DSColors.error

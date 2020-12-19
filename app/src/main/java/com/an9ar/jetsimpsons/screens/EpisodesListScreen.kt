@@ -40,7 +40,7 @@ fun EpisodesListContent(
     val listItemType = episodesViewModel.episodesListType.observeAsState(ListType.NONE)
     Scaffold(
             topBar = {
-                TopAppBar(backgroundColor = DSTheme.colors.background) {
+                TopAppBar(backgroundColor = DSTheme.colors.toolbar) {
                     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
                         val (screenTitle, itemSortingType) = createRefs()
                         Text(

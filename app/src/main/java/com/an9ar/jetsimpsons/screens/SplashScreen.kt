@@ -44,7 +44,7 @@ fun SplashScreen(
 fun SplashContent() {
     ConstraintLayout(
             modifier = Modifier
-                    .background(color = DSTheme.colors.background)
+                    .background(color = DSTheme.colors.splash)
                     .fillMaxSize()
     ) {
         val (appLogoRef, loadingRef, authorSignatureRef) = createRefs()
