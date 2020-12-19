@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets
 
 private val episodesList = ArrayList<Episode>()
 
-suspend fun getEpisodesList(assets: AssetManager): List<Episode>{
+fun getEpisodesList(assets: AssetManager): List<Episode>{
     getEpisodesFromJsonData(assets = assets)
     return episodesList
 }
@@ -30,7 +30,7 @@ private fun getJsonDataFromLocalFile(assets: AssetManager): String {
     return jsonString
 }
 
-private suspend fun getEpisodesFromJsonData(assets: AssetManager) {
+private fun getEpisodesFromJsonData(assets: AssetManager) {
     try {
         val jsonObject = JSONObject(getJsonDataFromLocalFile(assets = assets))
         val array = jsonObject.getJSONArray("array")

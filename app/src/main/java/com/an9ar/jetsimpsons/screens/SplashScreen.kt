@@ -35,7 +35,7 @@ fun SplashScreen(
     LaunchedEffect(subject = Dispatchers.IO) {
         val listOfEpisodes = getEpisodesList(assets = assets)
         episodesViewModel.setEpisodesList(listOfEpisodes)
-        delay(1500)
+        delay(500)
         navHostController.navigate("seriesList")
     }
 }

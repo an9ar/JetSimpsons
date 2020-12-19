@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.an9ar.jetsimpsons.data.Episode
-import com.an9ar.jetsimpsons.ui.ListType
+import com.an9ar.jetsimpsons.models.ListType
 
 class EpisodesViewModel @ViewModelInject constructor() : ViewModel() {
 
@@ -19,7 +19,7 @@ class EpisodesViewModel @ViewModelInject constructor() : ViewModel() {
 
     fun getEpisodeById(id: Long): Episode? = episodesList.value?.find { episode -> episode.id == id }
 
-    suspend fun setEpisodesList(episodes: List<Episode>) {
+    fun setEpisodesList(episodes: List<Episode>) {
         _episodesList.value = episodes
     }
 

@@ -1,9 +1,8 @@
 package com.an9ar.jetsimpsons.screens
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -15,12 +14,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
-import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.ui.LazyGridFor
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.theme.DSTheme
 import com.an9ar.jetsimpsons.ui.AnimatedListTypeButton
-import com.an9ar.jetsimpsons.ui.ListType
+import com.an9ar.jetsimpsons.models.ListType
 import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import dev.chrisbanes.accompanist.glide.GlideImage
 
@@ -154,10 +152,10 @@ fun EpisodesLinearList(
         items: List<Episode>,
         navHostController: NavHostController
 ) {
-    LazyColumnFor(
-            items = items
-    ) { episode ->
-        EpisodeListItem(navHostController = navHostController, episode = episode)
+    LazyColumn {
+        items(items) { episode ->
+            EpisodeListItem(navHostController = navHostController, episode = episode)
+        }
     }
 }
 

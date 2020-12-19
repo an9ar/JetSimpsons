@@ -1,5 +1,6 @@
 package com.an9ar.jetsimpsons.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.DpPropKey
 import androidx.compose.animation.core.FloatPropKey
 import androidx.compose.animation.core.TransitionState
@@ -16,12 +17,14 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.an9ar.jetsimpsons.R
+import com.an9ar.jetsimpsons.models.ListType
 
 val gridListIconSize = DpPropKey(label = "gridListIconSize")
 val linearListIconSize = DpPropKey(label = "linearListIconSize")
 val iconOpacity = FloatPropKey(label = "iconOpacity")
 val iconRotation = FloatPropKey(label = "iconRotation")
 
+@SuppressLint("Range")
 @Composable
 fun AnimatedListTypeButton(
         listTypeState: ListType,
@@ -87,7 +90,7 @@ fun AnimatedListTypeButton(
         else -> ListType.LINEAR
     }
 
-    val transitionState2 = transition(
+    val transitionState = transition(
             definition = remember { transitionDefinition },
             initState = listTypeState,
             toState = nextState
@@ -95,7 +98,7 @@ fun AnimatedListTypeButton(
 
     ListTypeButton(
             listTypeState = listTypeState,
-            transitionState = transitionState2,
+            transitionState = transitionState,
             onListTypeChanged = onListTypeChanged,
             modifier = modifier
     )
