@@ -2,13 +2,20 @@ package com.an9ar.jetsimpsons.ui
 
 import androidx.compose.animation.DpPropKey
 import androidx.compose.animation.core.FloatPropKey
+import androidx.compose.animation.core.TransitionState
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.transitionDefinition
 import androidx.compose.animation.transition
+import androidx.compose.foundation.clickable
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import com.an9ar.jetsimpsons.R
 
 val gridListIconSize = DpPropKey(label = "gridListIconSize")
 val linearListIconSize = DpPropKey(label = "linearListIconSize")
@@ -92,4 +99,38 @@ fun AnimatedListTypeButton(
             onListTypeChanged = onListTypeChanged,
             modifier = modifier
     )
+}
+
+@Composable
+fun ListTypeButton(
+        listTypeState: ListType,
+        onListTypeChanged: (ListType) -> Unit,
+        transitionState: TransitionState,
+        modifier: Modifier
+) {
+
+    when (listTypeState) {
+        ListType.LINEAR -> {
+            Icon(
+                    imageVector = vectorResource(id = R.drawable.ic_list_linear),
+                    modifier = modifier
+                            .alpha(transitionState[iconOpacity])
+                            .rotate(transitionState[iconRotation])
+                            .clickable(onClick = {
+                                onListTypeChanged(ListType.GRID)
+                            })
+            )
+        }
+        else -> {
+            Icon(
+                    imageVector = vectorResource(id = R.drawable.ic_list_grid),
+                    modifier = modifier
+                            .alpha(transitionState[iconOpacity])
+                            .rotate(transitionState[iconRotation])
+                            .clickable(onClick = {
+                                onListTypeChanged(ListType.LINEAR)
+                            })
+            )
+        }
+    }
 }
