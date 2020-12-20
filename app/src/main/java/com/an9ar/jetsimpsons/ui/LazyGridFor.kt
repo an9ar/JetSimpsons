@@ -23,12 +23,12 @@ fun <T> LazyGridFor(
 
         Row {
             item.forEachIndexed { rowIndex, item ->
-                Box(modifier = Modifier.weight(1F).align(Alignment.Top).padding(8.dp), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.weight(1F).align(Alignment.Top), contentAlignment = Alignment.Center) {
                     itemContent(item, index * rows + rowIndex)
                 }
             }
             repeat(rows - item.size) {
-                Box(modifier = Modifier.weight(1F).padding(8.dp)) {}
+                Box(modifier = Modifier.weight(1F).padding(2.dp)) {}
             }
         }
     }

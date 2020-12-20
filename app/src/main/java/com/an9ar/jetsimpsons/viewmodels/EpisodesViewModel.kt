@@ -20,7 +20,7 @@ class EpisodesViewModel @ViewModelInject constructor() : ViewModel() {
     fun getEpisodeById(id: Long): Episode? = episodesList.value?.find { episode -> episode.id == id }
 
     fun setEpisodesList(episodes: List<Episode>) {
-        _episodesList.value = episodes
+        _episodesList.value = episodes.sortedBy { it.id }
     }
 
     fun setEpisodesListType(type: ListType) {

@@ -101,6 +101,7 @@ fun EpisodeCard(
             backgroundColor = DSTheme.colors.card,
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
                     .clickable(onClick = {
                         navHostController.navigate("episode/${episode.id}")
                     })
@@ -168,7 +169,7 @@ fun EpisodeListItem(
             backgroundColor = DSTheme.colors.card,
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
-                    .padding(4.dp)
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
                     .clickable(onClick = {
                         navHostController.navigate("episode/${episode.id}")
                     })
