@@ -79,8 +79,8 @@ fun EpisodeImage(url: String) {
                 loading = {
                     Box(Modifier.fillMaxSize()) {
                         CircularProgressIndicator(
-                            color = DSTheme.colors.textAccent,
-                            modifier = Modifier.align(Alignment.Center)
+                                color = DSTheme.colors.textAccent,
+                                modifier = Modifier.align(Alignment.Center)
                         )
                     }
                 },
