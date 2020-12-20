@@ -78,7 +78,10 @@ fun EpisodeImage(url: String) {
                 contentScale = ContentScale.FillBounds,
                 loading = {
                     Box(Modifier.fillMaxSize()) {
-                        CircularProgressIndicator(Modifier.align(Alignment.Center))
+                        CircularProgressIndicator(
+                            color = DSTheme.colors.textAccent,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
                     }
                 },
                 modifier = Modifier.fillMaxSize()

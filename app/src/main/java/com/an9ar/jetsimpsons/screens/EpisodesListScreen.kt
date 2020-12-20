@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
-import com.an9ar.jetsimpsons.ui.LazyGridFor
+import com.an9ar.jetsimpsons.ui.LazyGrid
 import com.an9ar.jetsimpsons.data.Episode
 import com.an9ar.jetsimpsons.theme.DSTheme
 import com.an9ar.jetsimpsons.ui.AnimatedListTypeButton
@@ -83,11 +83,11 @@ fun EpisodesGridList(
         items: List<Episode>,
         navHostController: NavHostController
 ) {
-    LazyGridFor(
+    LazyGrid(
             items = items,
             rows = 2,
             hPadding = 8
-    ) { episode, index ->
+    ) { episode ->
         EpisodeCard(navHostController = navHostController, episode = episode)
     }
 }
@@ -115,7 +115,10 @@ fun EpisodeCard(
                     contentScale = ContentScale.FillBounds,
                     loading = {
                         Box(Modifier.fillMaxSize()) {
-                            CircularProgressIndicator(Modifier.align(Alignment.Center))
+                            CircularProgressIndicator(
+                                    color = DSTheme.colors.textAccent,
+                                    modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     },
                     modifier = Modifier.height(120.dp).constrainAs(simpsonPhotoRef) {
@@ -182,7 +185,10 @@ fun EpisodeListItem(
                     contentScale = ContentScale.FillBounds,
                     loading = {
                         Box(Modifier.fillMaxSize()) {
-                            CircularProgressIndicator(Modifier.align(Alignment.Center))
+                            CircularProgressIndicator(
+                                    color = DSTheme.colors.textAccent,
+                                    modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     },
                     modifier = Modifier.height(90.dp).width(120.dp)
