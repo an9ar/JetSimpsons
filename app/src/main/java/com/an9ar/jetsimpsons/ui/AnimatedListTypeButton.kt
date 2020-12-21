@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.models.ListType
 
-val gridListIconSize = DpPropKey(label = "gridListIconSize")
-val linearListIconSize = DpPropKey(label = "linearListIconSize")
 val iconOpacity = FloatPropKey(label = "iconOpacity")
 val iconRotation = FloatPropKey(label = "iconRotation")
 
@@ -34,22 +32,16 @@ fun AnimatedListTypeButton(
     val transitionDefinition = transitionDefinition<ListType> {
 
         state(ListType.NONE) {
-            this[gridListIconSize] = 18.dp
-            this[linearListIconSize] = 4.dp
             this[iconOpacity] = 1f
             this[iconRotation] = 0f
         }
 
         state(ListType.GRID) {
-            this[gridListIconSize] = 18.dp
-            this[linearListIconSize] = 4.dp
             this[iconOpacity] = 1f
             this[iconRotation] = 0f
         }
 
         state(ListType.LINEAR) {
-            this[gridListIconSize] = 4.dp
-            this[linearListIconSize] = 18.dp
             this[iconOpacity] = 1f
             this[iconRotation] = 0f
         }
