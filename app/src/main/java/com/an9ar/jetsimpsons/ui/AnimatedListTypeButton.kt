@@ -1,7 +1,6 @@
 package com.an9ar.jetsimpsons.ui
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.DpPropKey
 import androidx.compose.animation.core.FloatPropKey
 import androidx.compose.animation.core.TransitionState
 import androidx.compose.animation.core.keyframes
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.unit.dp
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.models.ListType
 
@@ -103,7 +101,6 @@ fun ListTypeButton(
         transitionState: TransitionState,
         modifier: Modifier
 ) {
-
     when (listTypeState) {
         ListType.LINEAR -> {
             Icon(
