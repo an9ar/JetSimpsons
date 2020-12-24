@@ -14,8 +14,8 @@ fun DSTheme(
 ) {
     val colors = if (darkTheme) dsDarkColorPalette() else dsLightColorPalette()
     Providers(
-            DSColorAmbient provides colors,
-            DSTypographyAmbient provides typography,
+            AmbientDSColor provides colors,
+            AmbientDSTypography provides typography,
     ) {
         MaterialTheme(
                 colors = colors.materialColors,
@@ -29,16 +29,16 @@ fun DSTheme(
 object DSTheme {
     @Composable
     val colors: DSColorPalette
-        get() = DSColorAmbient.current
+        get() = AmbientDSColor.current
 
     @Composable
     val typography: DSTypography
-        get() = DSTypographyAmbient.current
+        get() = AmbientDSTypography.current
 
     @Composable
     val sizes: DSSizes
         get() = DSSizes()
 }
 
-internal val DSColorAmbient = staticAmbientOf { dsLightColorPalette() }
-internal val DSTypographyAmbient = staticAmbientOf { DSTypography() }
+internal val AmbientDSColor = staticAmbientOf { dsLightColorPalette() }
+internal val AmbientDSTypography = staticAmbientOf { DSTypography() }
