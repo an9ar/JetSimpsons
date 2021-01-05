@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
+import androidx.navigation.compose.popUpTo
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.data.getEpisodesList
 import com.an9ar.jetsimpsons.theme.DSTheme
@@ -36,7 +37,9 @@ fun SplashScreen(
         val listOfEpisodes = getEpisodesList(assets = assets)
         episodesViewModel.setEpisodesList(listOfEpisodes)
         delay(500)
-        navHostController.navigate("seriesList")
+        navHostController.navigate("seriesList") {
+            popUpTo("splash") { inclusive = true }
+        }
     }
 }
 
