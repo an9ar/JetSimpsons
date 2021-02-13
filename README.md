@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://android-arsenal.com/api?level=23"><img alt="API" src="https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://developer.android.com/jetpack/androidx/versions/all-channel"><img alt="Compose version" src="https://img.shields.io/badge/compose%20version-1.0.0--alpha11-red"/></a>
+  <a href="https://developer.android.com/jetpack/androidx/versions/all-channel"><img alt="Compose version" src="https://img.shields.io/badge/compose%20version-1.0.0--alpha12-red"/></a>
   <a href="https://github.com/an9ar"><img alt="Profile" src="https://an9ar.github.io/an9arGithubLogo.svg"/></a>
 </p>
 
@@ -18,7 +18,7 @@ JetSimpsons is a simple app built with Jetpack Compose</p>
 - Minimum SDK level 23
 - No fragments
 - [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
-- [Compose Navigation](https://developer.android.com/jetpack/androidx/releases/navigation#navigation_compose_version_100_2) - for navigating between 'screens' within an Jetpack Compose app.
+- [Compose Navigation](https://developer.android.com/jetpack/androidx/releases/navigation#compose-1.0.0-alpha07) - for navigating between 'screens' within an Jetpack Compose app.
 - [Accompanist-Glide](https://github.com/chrisbanes/accompanist/tree/main/glide) - image loading composables.
 
 ## Find this repository useful?
