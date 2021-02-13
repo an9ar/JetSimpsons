@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import com.an9ar.jetsimpsons.R
 import com.an9ar.jetsimpsons.models.ListType
 
@@ -23,9 +23,9 @@ val iconRotation = FloatPropKey(label = "iconRotation")
 @SuppressLint("Range")
 @Composable
 fun AnimatedListTypeButton(
-        listTypeState: ListType,
-        onListTypeChanged: (ListType) -> Unit,
-        modifier: Modifier
+    listTypeState: ListType,
+    onListTypeChanged: (ListType) -> Unit,
+    modifier: Modifier
 ) {
     val transitionDefinition = transitionDefinition<ListType> {
 
@@ -81,47 +81,49 @@ fun AnimatedListTypeButton(
     }
 
     val transitionState = transition(
-            definition = remember { transitionDefinition },
-            initState = listTypeState,
-            toState = nextState
+        definition = remember { transitionDefinition },
+        initState = listTypeState,
+        toState = nextState
     )
 
     ListTypeButton(
-            listTypeState = listTypeState,
-            transitionState = transitionState,
-            onListTypeChanged = onListTypeChanged,
-            modifier = modifier
+        listTypeState = listTypeState,
+        transitionState = transitionState,
+        onListTypeChanged = onListTypeChanged,
+        modifier = modifier
     )
 }
 
 @Composable
 fun ListTypeButton(
-        listTypeState: ListType,
-        onListTypeChanged: (ListType) -> Unit,
-        transitionState: TransitionState,
-        modifier: Modifier
+    listTypeState: ListType,
+    onListTypeChanged: (ListType) -> Unit,
+    transitionState: TransitionState,
+    modifier: Modifier
 ) {
     when (listTypeState) {
         ListType.LINEAR -> {
             Icon(
-                    imageVector = vectorResource(id = R.drawable.ic_list_linear),
-                    modifier = modifier
-                            .alpha(transitionState[iconOpacity])
-                            .rotate(transitionState[iconRotation])
-                            .clickable(onClick = {
-                                onListTypeChanged(ListType.GRID)
-                            })
+                painter = painterResource(id = R.drawable.ic_list_linear),
+                contentDescription = null,
+                modifier = modifier
+                    .alpha(transitionState[iconOpacity])
+                    .rotate(transitionState[iconRotation])
+                    .clickable(onClick = {
+                        onListTypeChanged(ListType.GRID)
+                    })
             )
         }
         else -> {
             Icon(
-                    imageVector = vectorResource(id = R.drawable.ic_list_grid),
-                    modifier = modifier
-                            .alpha(transitionState[iconOpacity])
-                            .rotate(transitionState[iconRotation])
-                            .clickable(onClick = {
-                                onListTypeChanged(ListType.LINEAR)
-                            })
+                painter = painterResource(id = R.drawable.ic_list_grid),
+                contentDescription = null,
+                modifier = modifier
+                    .alpha(transitionState[iconOpacity])
+                    .rotate(transitionState[iconRotation])
+                    .clickable(onClick = {
+                        onListTypeChanged(ListType.LINEAR)
+                    })
             )
         }
     }

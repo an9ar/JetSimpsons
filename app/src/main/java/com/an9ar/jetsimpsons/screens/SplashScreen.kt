@@ -3,7 +3,6 @@ package com.an9ar.jetsimpsons.screens
 import android.content.res.AssetManager
 import androidx.compose.foundation.background
 import androidx.compose.material.*
-import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -11,9 +10,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.font
-import androidx.compose.ui.text.font.fontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -25,6 +24,7 @@ import com.an9ar.jetsimpsons.theme.DSTheme
 import com.an9ar.jetsimpsons.viewmodels.EpisodesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun SplashScreen(
@@ -33,7 +33,7 @@ fun SplashScreen(
         episodesViewModel: EpisodesViewModel
 ) {
     SplashContent()
-    LaunchedEffect(subject = Dispatchers.IO) {
+    LaunchedEffect(key1 = Dispatchers.IO) {
         val listOfEpisodes = getEpisodesList(assets = assets)
         episodesViewModel.setEpisodesList(listOfEpisodes)
         delay(500)
@@ -95,7 +95,7 @@ fun OutlinedText(value: String, textColor: Color, textSize: Int, modifier: Modif
                 color = DSTheme.colors.dark,
                 text = value,
                 style = TextStyle(
-                        fontFamily = fontFamily(font(R.font.simpsons_font)),
+                        fontFamily = FontFamily(Font(R.font.simpsons_font)),
                         fontWeight = FontWeight.W900,
                         fontSize = textSize.sp
                 ),
@@ -105,7 +105,7 @@ fun OutlinedText(value: String, textColor: Color, textSize: Int, modifier: Modif
                 color = textColor,
                 text = value,
                 style = TextStyle(
-                        fontFamily = fontFamily(font(R.font.simpsons_font)),
+                        fontFamily = FontFamily(Font(R.font.simpsons_font)),
                         fontWeight = FontWeight.W900,
                         fontSize = textSize.sp
                 ),
