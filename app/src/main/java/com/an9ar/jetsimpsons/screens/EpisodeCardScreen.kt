@@ -1,12 +1,9 @@
 package com.an9ar.jetsimpsons.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.material.Text
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,10 +11,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -53,7 +47,7 @@ fun EpisodeCardScreen(
                 backgroundColor = DSTheme.colors.toolbar
             )
         },
-        bodyContent = { innerPadding ->
+        content = { innerPadding ->
             val modifier = Modifier.padding(innerPadding)
             val targetEpisode = episodesViewModel.getEpisodeById(episodeId)
             targetEpisode?.let { EpisodeCardContent(it, modifier) }
@@ -67,10 +61,12 @@ fun EpisodeCardContent(
     episode: Episode,
     modifier: Modifier
 ) {
-    ScrollableColumn(modifier = modifier.background(DSTheme.colors.background).fillMaxSize()) {
-        EpisodeImage(url = episode.image_url)
-        Spacer(modifier = Modifier.preferredHeight(16.dp))
-        EpisodeInfo(episode = episode)
+    LazyColumn(modifier = modifier.background(DSTheme.colors.background).fillMaxSize()) {
+        item {
+            EpisodeImage(url = episode.image_url)
+            Spacer(modifier = Modifier.height(16.dp))
+            EpisodeInfo(episode = episode)
+        }
     }
 }
 
@@ -109,7 +105,7 @@ fun EpisodeInfo(episode: Episode) {
         Column(modifier = Modifier.fillMaxSize()) {
             EpisodeNameTitle(episodeTitle = episode.title)
             Divider(color = DSTheme.colors.background)
-            Spacer(modifier = Modifier.preferredHeight(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             EpisodeDescriptionItem("IMDb rating", episode.imdb_rating.toString())
             EpisodeDescriptionItem("IMDb votes:", episode.imdb_votes.toString())
             EpisodeDescriptionItem("Number in season:", episode.number_in_season.toString())
@@ -119,7 +115,7 @@ fun EpisodeInfo(episode: Episode) {
             EpisodeDescriptionItem("Production code:", episode.production_code)
             EpisodeDescriptionItem("Season:", episode.season.toString())
             EpisodeDescriptionItem("Views:", episode.views.toString())
-            Spacer(modifier = Modifier.preferredHeight(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }

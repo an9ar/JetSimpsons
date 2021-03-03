@@ -3,8 +3,8 @@ package com.an9ar.jetsimpsons.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
-import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 
 @Composable
 fun DSTheme(
@@ -13,9 +13,9 @@ fun DSTheme(
         content: @Composable() () -> Unit
 ) {
     val colors = if (darkTheme) dsDarkColorPalette() else dsLightColorPalette()
-    Providers(
-            AmbientDSColor provides colors,
-            AmbientDSTypography provides typography,
+    CompositionLocalProvider(
+        LocalDSColor provides colors,
+        LocalDSTypography provides typography,
     ) {
         MaterialTheme(
                 colors = colors.materialColors,
@@ -27,18 +27,16 @@ fun DSTheme(
 }
 
 object DSTheme {
-    @Composable
+
     val colors: DSColorPalette
-        get() = AmbientDSColor.current
+        @Composable get() = LocalDSColor.current
 
-    @Composable
     val typography: DSTypography
-        get() = AmbientDSTypography.current
+        @Composable get() = LocalDSTypography.current
 
-    @Composable
     val sizes: DSSizes
-        get() = DSSizes()
+        @Composable get() = DSSizes()
 }
 
-internal val AmbientDSColor = staticAmbientOf { dsLightColorPalette() }
-internal val AmbientDSTypography = staticAmbientOf { DSTypography() }
+internal val LocalDSColor = compositionLocalOf { dsLightColorPalette() }
+internal val LocalDSTypography = compositionLocalOf { DSTypography() }

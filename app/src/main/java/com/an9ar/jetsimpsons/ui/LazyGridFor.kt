@@ -3,6 +3,7 @@ package com.an9ar.jetsimpsons.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +20,7 @@ fun <T> LazyGrid(
     LazyColumn(modifier = Modifier.padding(horizontal = hPadding.dp)) {
         itemsIndexed(items = chunkedList) { index, item ->
             if (index == 0) {
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
             }
 
             Row {
